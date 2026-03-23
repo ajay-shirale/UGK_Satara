@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The UGK — Urban Grill Kitchen, Satara</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════════
+   RESET & BASE  
+══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+:root {
+  --green:     #3A6B35;   /* primary green — like Green Rebel's forest green */
+  --green-d:   #2B5027;   /* darker green for hover / depth */
+  --green-l:   #4E8A47;   /* lighter accent */
+  --white:     #FFFFFF;
+  --off:       #F7F5F0;   /* section background — very slightly warm white */
+  --black:     #111111;
+  --muted:     #666666;
+  --border:    #E0E0E0;
+  --red:       #C0392B;   /* accent for call-to-action / specials */
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   NAV — exact Green Rebel style
+   White background, green logo, simple links
+══════════════════════════════════════════ */
+header {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+.logo-wrap {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none;
+}
+/* UGK logo — circular stamp rendered as inline SVG circle with text */
+.ugk-logo-img {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  object-fit: contain;
+  filter: grayscale(0%);
+}
+.logo-text {
+  display: flex; flex-direction: column; line-height:1.1;
+}
+.logo-text strong {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 20px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--green);
+}
+.logo-text span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400; font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+}
+
+nav { display: flex; align-items: center; gap:0; }
+nav a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--black); text-decoration: none; padding: 0 20px; height: 72px;
+  display: flex; align-items: center;
+  transition: color .2s;
+}
+nav a:hover { color: var(--green); }
+.nav-cta {
+  margin-left: 24px;
+  background: var(--green) !important; color: var(--white) !important;
+  padding: 12px 24px !important; height: auto !important;
+  transition: background .2s !important;
+}
+.nav-cta:hover { background: var(--green-d) !important; }
+
+/* ══════════════════════════════════════════
+   HERO — fullscreen photo, huge white text 
+   bottom-anchored — identical to Green Rebel
+══════════════════════════════════════════ */
+#hero {
+  height: 100vh;
+  position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: 80px;
+  overflow: hidden;
+  margin-top: 72px;
+  /* subtract nav height so photo is still true 100vh feel */
+  height: calc(100vh - 72px);
+}
+.hero-img {
+  position: absolute; inset:0;
+  background: url('https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?w=1800&q=90') center/cover no-repeat;
+  animation: zoomHero 16s ease-out forwards;
+}
+@keyframes zoomHero { from{transform:scale(1.06)} to{transform:scale(1)} }
+.hero-gradient {
+  position: absolute; inset:0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.78) 0%,
+    rgba(0,0,0,0.35) 45%,
+    rgba(0,0,0,0.10) 100%
+  );
+}
+.hero-body {
+  position: relative; z-index:2;
+  padding: 0 56px;
+}
+.hero-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 12px; letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 12px;
+  animation: up .7s .2s both;
+}
+.hero-h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(60px, 9.5vw, 134px);
+  line-height: .88;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: -1px;
+  animation: up 1s .3s both;
+}
+.hero-h1 .italic-line {
+  font-style: italic;
+  color: rgba(255,255,255,0.80);
+}
+.hero-sub {
+  margin-top: 22px;
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  max-width: 480px; line-height: 1.75;
+  animation: up .8s .5s both;
+}
+.hero-btns {
+  margin-top: 32px; display:flex; gap:14px; flex-wrap:wrap;
+  animation: up .8s .7s both;
+}
+.btn-white {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  background: var(--white); color: var(--green);
+  padding: 14px 32px; text-decoration:none;
+  transition: background .2s;
+}
+.btn-white:hover { background: var(--off); }
+.btn-ghost {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  border: 2px solid rgba(255,255,255,0.5); color: var(--white);
+  padding: 12px 32px; text-decoration:none;
+  transition: border-color .2s, background .2s;
+}
+.btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+@keyframes up { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
+
+/* ══════════════════════════════════════════
+   NUMBERS STRIP — white bg, green numbers
+══════════════════════════════════════════ */
+.numbers-strip {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+}
+.n-item {
+  flex:1; padding: 36px 24px; text-align:center;
+  border-right: 1px solid var(--border);
+}
+.n-item:last-child { border-right:none; }
+.n-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 52px; line-height:1;
+  color: var(--green); letter-spacing:-1px;
+}
+.n-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-top:4px;
+}
+
+/* ══════════════════════════════════════════
+   MARQUEE — green background, white text
+   (Green Rebel has a green ticker strip)
+══════════════════════════════════════════ */
+.marquee-strip {
+  background: var(--green);
+  overflow: hidden; padding: 15px 0;
+}
+.marquee-inner {
+  display: inline-flex;
+  animation: ticker 24s linear infinite;
+  white-space: nowrap;
+}
+.m-item {
+  display: inline-flex; align-items:center; gap:18px;
+  padding: 0 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--white);
+}
+.m-item::after { content:'◆'; font-size:6px; opacity:.5; }
+@keyframes ticker { to{transform:translateX(-50%)} }
+
+/* ══════════════════════════════════════════
+   ABOUT SPLIT — Green Rebel pattern:
+   Left = dark green background with white text
+   Right = full-bleed photo
+══════════════════════════════════════════ */
+#about { display:grid; grid-template-columns:1fr 1fr; min-height:88vh; }
+.about-text-side {
+  background: var(--green);
+  padding: 96px 72px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.section-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom:16px;
+}
+.section-h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: clamp(44px,5vw,78px);
+  line-height:.9; text-transform: uppercase; letter-spacing:-1px;
+  color: var(--white);
+}
+.section-h2 .it {
+  font-style:italic; font-weight:800;
+  color: rgba(255,255,255,0.7);
+  display:block;
+}
+.about-p {
+  font-size:16px; font-weight:300; line-height:1.85;
+  color: rgba(255,255,255,0.7); margin: 24px 0 14px; max-width:420px;
+}
+.chip-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+.chip {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.7);
+  padding:7px 14px;
+  transition: border-color .2s, color .2s;
+}
+.chip:hover { border-color:var(--white); color:var(--white); }
+.about-photo-side {
+  background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=90') center/cover no-repeat;
+}
+
+/* ══════════════════════════════════════════
+   BIG PHOTO SECTION — Green Rebel does a 
+   full-width photo with large centred text
+══════════════════════════════════════════ */
+.bigphoto {
+  height: 65vh; position:relative;
+  background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=1800&q=90') center 40%/cover no-repeat;
+  display:flex; align-items:center; justify-content:center;
+}
+.bigphoto::before {
+  content:''; position:absolute; inset:0;
+  background: rgba(0,0,0,0.50);
+}
+.bigphoto-text {
+  position:relative; text-align:center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(52px, 9vw, 128px);
+  line-height:.88; text-transform:uppercase; letter-spacing:-1px;
+  color: var(--white);
+}
+.bigphoto-text .it { font-style:italic; color:rgba(255,255,255,0.65); display:block; }
+
+/* ══════════════════════════════════════════
+   MENU — white background section
+   Green Rebel style: headline left, tabs right
+══════════════════════════════════════════ */
+#menu { background: var(--white); }
+.menu-top {
+  padding: 72px 56px 52px;
+  border-bottom: 2px solid var(--black);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap:40px;
+}
+.menu-hed {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: clamp(44px,5.5vw,80px);
+  line-height:.88; text-transform:uppercase; letter-spacing:-1px; color:var(--black);
+}
+.menu-hed .it { font-style:italic; color:var(--green); display:block; }
+.menu-tag {
+  font-size:15px; font-weight:300; color:var(--muted); max-width:280px;
+  line-height:1.7; text-align:right;
+}
+.tab-bar {
+  padding: 0 56px;
+  border-bottom: 1px solid var(--border);
+  display:flex; gap:0; overflow-x:auto;
+  background: var(--off);
+}
+.t-btn {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:12px; letter-spacing:2px; text-transform:uppercase;
+  background:none; border:none; border-right:1px solid var(--border);
+  padding:14px 20px; color:var(--muted); cursor:pointer; white-space:nowrap;
+  transition: color .2s, background .2s; border-bottom: 3px solid transparent;
+}
+.t-btn.on { color:var(--green); border-bottom-color:var(--green); background:var(--white); }
+.t-btn:hover:not(.on) { color:var(--black); }
+.menu-body { padding: 0 56px 80px; }
+.mSec { display:none; } .mSec.on { display:block; }
+.mCat {
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:13px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--green); padding: 48px 0 14px;
+  border-bottom: 2px solid var(--green);
+}
+.mList { list-style:none; }
+.mList li {
+  display:flex; justify-content:space-between; align-items:baseline; gap:24px;
+  padding: 17px 0; border-bottom:1px solid var(--border);
+  transition: padding-left .15s, background .15s;
+}
+.mList li:hover { padding-left:10px; background:var(--off); padding-right:10px; margin:0 -10px; }
+.mName {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:21px; color:var(--black); letter-spacing:.2px;
+}
+.mDesc { font-size:13px; color:var(--muted); margin-top:2px; font-weight:300; }
+.mPrice {
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:18px; color:var(--green); white-space:nowrap;
+}
+
+/* ══════════════════════════════════════════
+   WHY UGK / HIGHLIGHTS — off-white bg
+   Green Rebel uses simple icon+text cards
+══════════════════════════════════════════ */
+#highlights { background:var(--off); padding:96px 56px; }
+.hl-top {
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:flex-end;
+  margin-bottom:64px;
+}
+.hl-hed {
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(44px,5.5vw,78px); line-height:.9;
+  text-transform:uppercase; letter-spacing:-1px; color:var(--black);
+}
+.hl-hed .it { font-style:italic; color:var(--green); display:block; }
+.hl-sub { font-size:15px; font-weight:300; color:var(--muted); line-height:1.8; }
+.hl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.hl-card {
+  background:var(--white); padding:48px 36px;
+  border-top:4px solid transparent;
+  transition:border-color .3s, background .3s;
+  position:relative;
+}
+.hl-card:hover { border-top-color:var(--green); background:var(--off); }
+.hl-num {
+  position:absolute; top:20px; right:24px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900; font-size:64px; line-height:1;
+  color:rgba(0,0,0,0.04);
+}
+.hl-icon { font-size:30px; margin-bottom:18px; }
+.hl-title {
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:22px; text-transform:uppercase; letter-spacing:1px;
+  color:var(--black); margin-bottom:10px;
+}
+.hl-desc { font-size:14px; color:var(--muted); line-height:1.75; font-weight:300; }
+
+/* ══════════════════════════════════════════
+   QUOTE SECTION — green background
+   Green Rebel uses alternating green sections
+══════════════════════════════════════════ */
+.quote-sec {
+  background: var(--green);
+  padding: 100px 56px; text-align:center;
+}
+.q-rule { width:48px; height:3px; background:rgba(255,255,255,0.35); margin:0 auto 36px; }
+.q-text {
+  font-family:'Barlow Condensed',sans-serif; font-weight:300;
+  font-size:clamp(22px,3.2vw,40px); font-style:italic;
+  color:var(--white); max-width:780px; margin:0 auto 18px;
+  line-height:1.45;
+}
+.q-text strong { font-weight:700; }
+.q-cite {
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:600; font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  color:rgba(255,255,255,0.5);
+}
+
+/* ══════════════════════════════════════════
+   REVIEWS — white background
+══════════════════════════════════════════ */
+#reviews { background:var(--white); padding:96px 56px; }
+.rev-top {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  border-bottom:2px solid var(--black); padding-bottom:40px; margin-bottom:56px;
+}
+.score-big {
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900; font-size:108px; line-height:1;
+  color:var(--black); letter-spacing:-3px;
+}
+.score-row { display:flex; align-items:baseline; gap:16px; }
+.score-det .stars { color:var(--green); font-size:22px; letter-spacing:3px; }
+.score-det .cnt {
+  font-family:'Barlow Condensed',sans-serif; font-weight:600;
+  font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-top:4px;
+}
+.rev-tag {
+  font-size:17px; font-style:italic; font-family:'Barlow Condensed',sans-serif;
+  font-weight:400; color:var(--muted); max-width:260px; text-align:right; line-height:1.5;
+}
+.rev-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.rCard {
+  background:var(--off); padding:36px;
+  border-left:4px solid transparent;
+  transition:border-color .25s, background .25s;
+}
+.rCard:hover { border-left-color:var(--green); background:#EAEFE8; }
+.rStars { color:var(--green); font-size:14px; letter-spacing:3px; margin-bottom:14px; }
+.rText {
+  font-size:15px; font-style:italic; line-height:1.7;
+  color:var(--black); margin-bottom:18px; font-weight:300;
+}
+.rName {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--green);
+}
+.rDate { font-size:12px; color:var(--muted); margin-top:2px; }
+
+/* ══════════════════════════════════════════
+   VISIT — split: photo left, green right
+══════════════════════════════════════════ */
+#visit { display:grid; grid-template-columns:1fr 1fr; }
+.visit-photo {
+  background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=90') center/cover no-repeat;
+  min-height:560px;
+}
+.visit-info {
+  background:var(--green); padding:80px 64px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.visit-h2 {
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(40px,4.5vw,68px); line-height:.9;
+  text-transform:uppercase; letter-spacing:-1px; color:var(--white); margin-bottom:44px;
+}
+.visit-h2 .it { font-style:italic; color:rgba(255,255,255,0.65); display:block; }
+.vRow {
+  display:flex; gap:18px; padding:18px 0;
+  border-top:1px solid rgba(255,255,255,0.15);
+}
+.vRow:last-of-type { border-bottom:1px solid rgba(255,255,255,0.15); margin-bottom:36px; }
+.vLbl {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:9px; letter-spacing:4px; text-transform:uppercase;
+  color:rgba(255,255,255,0.4); min-width:72px; padding-top:2px;
+}
+.vVal { font-size:14px; color:rgba(255,255,255,0.8); line-height:1.75; font-weight:300; }
+.vVal a { color:var(--white); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.25); transition:border-color .2s; }
+.vVal a:hover { border-color:var(--white); }
+.visit-btns { display:flex; gap:12px; margin-top:8px; }
+.btn-white-solid {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:13px; letter-spacing:2px; text-transform:uppercase;
+  background:var(--white); color:var(--green);
+  padding:13px 28px; text-decoration:none; transition:background .2s;
+}
+.btn-white-solid:hover { background:var(--off); }
+.btn-outline-w {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:13px; letter-spacing:2px; text-transform:uppercase;
+  border:2px solid rgba(255,255,255,0.4); color:var(--white);
+  padding:11px 28px; text-decoration:none; transition:border-color .2s, background .2s;
+}
+.btn-outline-w:hover { border-color:var(--white); background:rgba(255,255,255,0.08); }
+
+/* ══════════════════════════════════════════
+   FOOTER — black/very dark
+   Green Rebel footer is simple and clean
+══════════════════════════════════════════ */
+footer {
+  background: #111;
+  padding: 64px 56px 32px;
+  border-top: 4px solid var(--green);
+}
+.ft-grid {
+  display:grid; grid-template-columns:2.2fr 1fr 1fr; gap:60px;
+  padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:24px;
+}
+.ft-logo {
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:40px; text-transform:uppercase; letter-spacing:-1px;
+  color:var(--white); line-height:1; margin-bottom:10px;
+}
+.ft-logo em { color:var(--green); font-style:normal; }
+.ft-desc { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.85; font-weight:300; max-width:260px; margin-bottom:22px; }
+.ft-socials { display:flex; gap:10px; }
+.ft-soc {
+  font-family:'Barlow Condensed',sans-serif; font-weight:600;
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.5);
+  padding:8px 14px; text-decoration:none; transition:all .2s;
+}
+.ft-soc:hover { border-color:var(--green); color:var(--green); }
+.ft-col h4 {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:10px; letter-spacing:4px; text-transform:uppercase;
+  color:rgba(255,255,255,0.35); margin-bottom:16px;
+}
+.ft-col ul { list-style:none; }
+.ft-col li { margin-bottom:9px; }
+.ft-col a { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; font-weight:300; transition:color .2s; }
+.ft-col a:hover { color:var(--white); }
+.ft-bottom {
+  display:flex; justify-content:space-between;
+  font-size:11px; letter-spacing:1px;
+  color:rgba(255,255,255,0.2); font-family:'Barlow Condensed',sans-serif;
+}
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════ */
+.r { opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1); }
+.r.v { opacity:1; transform:none; }
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+.d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:900px){
+  header{padding:0 20px}
+  nav a{display:none}
+  .nav-cta{display:flex;margin-left:auto}
+  #hero{height:calc(100vh - 72px)}
+  .hero-body{padding:0 24px}
+  .numbers-strip{flex-wrap:wrap}
+  .n-item{flex:0 0 50%}
+  #about{grid-template-columns:1fr}
+  .about-photo-side{height:55vw;min-height:240px}
+  .about-text-side{padding:60px 28px}
+  #highlights{padding:72px 24px}
+  .hl-top{grid-template-columns:1fr;gap:20px}
+  .hl-grid{grid-template-columns:1fr}
+  .menu-top{padding:56px 24px 40px;flex-direction:column;align-items:flex-start;gap:16px}
+  .menu-tag{text-align:left}
+  .tab-bar{padding:0 24px}
+  .menu-body{padding:0 24px 60px}
+  .mList li:hover{padding-left:0;padding-right:0;margin:0;background:none}
+  #reviews{padding:72px 24px}
+  .rev-top{flex-direction:column;align-items:flex-start;gap:16px}
+  .rev-tag{text-align:left}
+  .rev-grid{grid-template-columns:1fr}
+  #visit{grid-template-columns:1fr}
+  .visit-photo{min-height:280px}
+  .visit-info{padding:56px 28px}
+  footer{padding:56px 24px 28px}
+  .ft-grid{grid-template-columns:1fr;gap:40px}
+  .ft-bottom{flex-direction:column;gap:6px}
+  .bigphoto-text{font-size:clamp(40px,11vw,80px)}
+  .quote-sec{padding:72px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <a href="#" class="logo-wrap">
+    <img class="ugk-logo-img" 
+      src="data:image/jpeg;base64,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"
+      alt="The UGK Satara Logo"
+    >
+    <div class="logo-text">
+      <strong>The UGK</strong>
+      <span>Urban Grill Kitchen · Satara</span>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#highlights">Experience</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit Us</a>
+    <a href="tel:+919987047072" class="nav-cta">Reserve a Table</a>
+  </nav>
+</header>
+
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-body">
+    <p class="hero-label">Powai Naka · Satara · Rooftop Dining</p>
+    <h1 class="hero-h1">
+      Don't just eat out.<br>
+      <span class="italic-line">Dine above it all.</span>
+    </h1>
+    <p class="hero-sub">Satara's most celebrated rooftop restaurant — bold flavours, breathtaking views, and a curated ambience that stays with you long after the meal.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-white">Explore the Menu</a>
+      <a href="#visit" class="btn-ghost">Find Us</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ NUMBERS STRIP ═══ -->
+<div class="numbers-strip">
+  <div class="n-item r"><div class="n-num">4.3★</div><div class="n-lbl">Google Rating</div></div>
+  <div class="n-item r d1"><div class="n-num">36+</div><div class="n-lbl">Happy Reviews</div></div>
+  <div class="n-item r d2"><div class="n-num">3rd</div><div class="n-lbl">Floor Rooftop</div></div>
+  <div class="n-item r d3"><div class="n-num">100+</div><div class="n-lbl">Dishes on Menu</div></div>
+  <div class="n-item r d4"><div class="n-num">12:30</div><div class="n-lbl">Opens Daily (PM)</div></div>
+</div>
+
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="m-item">Tandoor Starters</span><span class="m-item">Rooftop Dining</span>
+    <span class="m-item">Indian Curries</span><span class="m-item">Wood Fired Pizza</span>
+    <span class="m-item">Asian Fusion</span><span class="m-item">Craft Mocktails</span>
+    <span class="m-item">Satara's Finest</span><span class="m-item">Boho Ambience</span>
+    <span class="m-item">Tandoor Starters</span><span class="m-item">Rooftop Dining</span>
+    <span class="m-item">Indian Curries</span><span class="m-item">Wood Fired Pizza</span>
+    <span class="m-item">Asian Fusion</span><span class="m-item">Craft Mocktails</span>
+    <span class="m-item">Satara's Finest</span><span class="m-item">Boho Ambience</span>
+  </div>
+</div>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="about-text-side">
+    <p class="section-eyebrow r">Our Story</p>
+    <h2 class="section-h2 r d1">Real Food.<br>Real Views.<br><span class="it">Real Satara.</span></h2>
+    <p class="about-p r d2">Perched on the 3rd floor of Hotel Gulbahar at Powai Naka, The Urban Grill Kitchen is Satara's most talked-about rooftop destination. Built around a love for exceptional food and the magic of dining under the open sky.</p>
+    <p class="about-p r d3" style="margin-top:0">From live tandoor starters and rich Indian curries to wood-fired pizzas, Asian fusion, and craft mocktails — every dish is made with intention.</p>
+    <div class="chip-row r d4">
+      <span class="chip">Rooftop Seating</span>
+      <span class="chip">Dine-In & Delivery</span>
+      <span class="chip">Private Parties</span>
+      <span class="chip">Good for Groups</span>
+      <span class="chip">Kid Friendly</span>
+      <span class="chip">Free Parking</span>
+    </div>
+  </div>
+  <div class="about-photo-side"></div>
+</section>
+
+
+<!-- ═══ BIG PHOTO ═══ -->
+<div class="bigphoto">
+  <div class="bigphoto-text r">
+    Fire.<br>Spice.<br><span class="it">Satara's Rooftop.</span>
+  </div>
+</div>
+
+
+<!-- ═══ MENU ═══ -->
+<section id="menu">
+  <div class="menu-top">
+    <div>
+      <p class="section-eyebrow r" style="color:var(--muted)">What We Serve</p>
+      <h2 class="menu-hed r d1">The Menu.<br><span class="it">Eat real. Feel real.</span></h2>
+    </div>
+    <p class="menu-tag r d2">The choice is easy when the food is this good. From tandoor to pizza, biryani to bao — something for everyone.</p>
+  </div>
+
+  <div class="tab-bar">
+    <button class="t-btn on" onclick="showTab('st',this)">Starters</button>
+    <button class="t-btn" onclick="showTab('cu',this)">Curries</button>
+    <button class="t-btn" onclick="showTab('pp',this)">Pizza & Pasta</button>
+    <button class="t-btn" onclick="showTab('rb',this)">Rice & Biryani</button>
+    <button class="t-btn" onclick="showTab('br',this)">Breads & Soups</button>
+    <button class="t-btn" onclick="showTab('qb',this)">Quick Bites</button>
+    <button class="t-btn" onclick="showTab('dr',this)">Drinks</button>
+  </div>
+
+  <div class="menu-body">
+
+    <div class="mSec on" id="tab-st">
+      <div class="mCat">Asian Cuisine</div>
+      <ul class="mList">
+        <li><div><div class="mName">Veg Manchurian</div><div class="mDesc">Dry / Gravy — crispy veg balls in tangy Indo-Chinese sauce</div></div><div class="mPrice">₹259 | 289</div></li>
+        <li><div><div class="mName">Paneer Chilly</div><div class="mDesc">Dry / Gravy — spicy paneer cubes with bell peppers</div></div><div class="mPrice">₹299 | 329</div></li>
+        <li><div><div class="mName">Veg Crispy</div></div><div class="mPrice">₹259</div></li>
+        <li><div><div class="mName">Honey Chilli Potato</div></div><div class="mPrice">₹249</div></li>
+        <li><div><div class="mName">Thai Pattaya Spring Roll</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Tangra Paneer Chilli</div></div><div class="mPrice">₹329</div></li>
+        <li><div><div class="mName">Crispy Corn</div></div><div class="mPrice">₹229</div></li>
+        <li><div><div class="mName">Chicken Crispy / Dry Gravy</div></div><div class="mPrice">₹299 | 329</div></li>
+        <li><div><div class="mName">Basil Chilli Chicken</div></div><div class="mPrice">₹329</div></li>
+        <li><div><div class="mName">Korean Crispy Chicken</div><div class="mDesc">Coated in spicy Korean gochujang sauce</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Lollipop Dry / Masala</div></div><div class="mPrice">₹269 | 299</div></li>
+        <li><div><div class="mName">BBQ Chicken Wings</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Peri-Peri Chicken Wings</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Fried Chicken Wings</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Tangra Chicken Chilli</div></div><div class="mPrice">₹349</div></li>
+      </ul>
+      <div class="mCat">Tandoor — Vegetarian</div>
+      <ul class="mList">
+        <li><div><div class="mName">Paneer Tikka</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Paneer Malai Tikka</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Paneer Lasooni Tikka</div></div><div class="mPrice">₹309</div></li>
+        <li><div><div class="mName">Stuffed Cheese Chilli Mushroom</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Paneer Lemon Pepper Tikka</div></div><div class="mPrice">₹329</div></li>
+        <li><div><div class="mName">Paneer Basil Garlic Chipotle Tikka</div></div><div class="mPrice">₹359</div></li>
+        <li><div><div class="mName">Paneer Lapeta Kebab</div></div><div class="mPrice">₹329</div></li>
+        <li><div><div class="mName">Veg Seekh Kebab</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Paneer Makhmali Kebab</div></div><div class="mPrice">₹339</div></li>
+        <li><div><div class="mName">Paneer Dakshini Kebab</div></div><div class="mPrice">₹359</div></li>
+        <li><div><div class="mName">Veg Tandoor Platter</div><div class="mDesc">Assortment of smoky spiced vegetables and paneer — serves 2–3</div></div><div class="mPrice">₹1000</div></li>
+      </ul>
+      <div class="mCat">Tandoor — Non-Vegetarian</div>
+      <ul class="mList">
+        <li><div><div class="mName">Tandoori Chicken H/F</div></div><div class="mPrice">₹349 | 589</div></li>
+        <li><div><div class="mName">Murgh Nazakat Tikka</div></div><div class="mPrice">₹379</div></li>
+        <li><div><div class="mName">Murgh Mataka Dum Kebab</div></div><div class="mPrice">₹409</div></li>
+        <li><div><div class="mName">Murgh Tangdi Kebab</div></div><div class="mPrice">₹369</div></li>
+        <li><div><div class="mName">Murgh Basil Garlic Chipotle Tikka</div></div><div class="mPrice">₹399</div></li>
+        <li><div><div class="mName">Murgh Tikka</div></div><div class="mPrice">₹339</div></li>
+        <li><div><div class="mName">BBQ Murgh Tikka</div></div><div class="mPrice">₹369</div></li>
+        <li><div><div class="mName">Murgh Lemon Pepper Tikka</div></div><div class="mPrice">₹379</div></li>
+        <li><div><div class="mName">Murgh Kali Miri Tikka</div></div><div class="mPrice">₹399</div></li>
+        <li><div><div class="mName">Murgh Lasooni Tikka</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Murg Mexican Sheekh Kebab</div></div><div class="mPrice">₹399</div></li>
+        <li><div><div class="mName">Murgh Dakshini Kebab</div></div><div class="mPrice">₹399</div></li>
+        <li><div><div class="mName">Murgh Cheese Kasturi Kebab</div></div><div class="mPrice">₹399</div></li>
+        <li><div><div class="mName">Tandoori Platter</div><div class="mDesc">Grand assortment of marinated meats and vegetables — serves 3–4</div></div><div class="mPrice">₹1400</div></li>
+      </ul>
+      <div class="mCat">Chinese Bao</div>
+      <ul class="mList">
+        <li><div><div class="mName">Teriyaki Paneer Bao</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Indo-Chinese Bao</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Katsu Chicken Bao</div></div><div class="mPrice">₹319</div></li>
+        <li><div><div class="mName">Butter Chicken Bao</div><div class="mDesc">Must try — Indian butter masala meets Asian street food</div></div><div class="mPrice">₹329</div></li>
+      </ul>
+    </div>
+
+    <div class="mSec" id="tab-cu">
+      <div class="mCat">Non-Veg Curries</div>
+      <ul class="mList">
+        <li><div><div class="mName">Murgh Tikka Masala</div><div class="mDesc">Grilled chicken in creamy spiced tomato gravy</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Butter Chicken (Boneless / With Bone)</div></div><div class="mPrice">₹689 | 559</div></li>
+        <li><div><div class="mName">Murgh Musallam H/F</div></div><div class="mPrice">₹559 | 859</div></li>
+        <li><div><div class="mName">Murgh Kadhai</div></div><div class="mPrice">₹359</div></li>
+        <li><div><div class="mName">Murgh Do Pyaza</div></div><div class="mPrice">₹339</div></li>
+        <li><div><div class="mName">Murgh Mughlai</div></div><div class="mPrice">₹359</div></li>
+        <li><div><div class="mName">Murgh Lahori</div></div><div class="mPrice">₹369</div></li>
+        <li><div><div class="mName">Murgh Patiyala</div></div><div class="mPrice">₹379</div></li>
+        <li><div><div class="mName">Murgh Changezi</div></div><div class="mPrice">₹389</div></li>
+        <li><div><div class="mName">Murgh Bhuna Masala</div></div><div class="mPrice">₹359</div></li>
+        <li><div><div class="mName">Chicken Angoori</div></div><div class="mPrice">₹389</div></li>
+        <li><div><div class="mName">Chicken Curry</div></div><div class="mPrice">₹299</div></li>
+      </ul>
+      <div class="mCat">Vegetarian Curries</div>
+      <ul class="mList">
+        <li><div><div class="mName">Dal Tadka</div></div><div class="mPrice">₹189</div></li>
+        <li><div><div class="mName">Dal Makhani</div></div><div class="mPrice">₹259</div></li>
+        <li><div><div class="mName">Malai Kofta</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Palak Malai Kofta</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Veg Maratha</div><div class="mDesc">A medley of vegetables with a royal Maratha twist</div></div><div class="mPrice">₹269</div></li>
+        <li><div><div class="mName">Dum Aloo Masala</div></div><div class="mPrice">₹259</div></li>
+        <li><div><div class="mName">Lasooni Palak</div></div><div class="mPrice">₹229</div></li>
+        <li><div><div class="mName">Veg Angara</div></div><div class="mPrice">₹249</div></li>
+        <li><div><div class="mName">Mushroom Mutter Masala</div></div><div class="mPrice">₹249</div></li>
+        <li><div><div class="mName">Mix Veg</div></div><div class="mPrice">₹239</div></li>
+        <li><div><div class="mName">Palak Paneer</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Paneer Do Pyaza</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Paneer Cheese Blast</div></div><div class="mPrice">₹319</div></li>
+        <li><div><div class="mName">Paneer Toofani</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Cheese Angoori</div></div><div class="mPrice">₹299</div></li>
+        <li><div><div class="mName">Kaju Paneer Masala</div></div><div class="mPrice">₹319</div></li>
+        <li><div><div class="mName">Paneer Lahori</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Coriander Paneer</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Paneer Tikka Masala</div></div><div class="mPrice">₹299</div></li>
+      </ul>
+    </div>
+
+    <div class="mSec" id="tab-pp">
+      <div class="mCat">Pizzas</div>
+      <ul class="mList">
+        <li><div><div class="mName">Margherita</div></div><div class="mPrice">₹249</div></li>
+        <li><div><div class="mName">Farm Fresh</div><div class="mDesc">Onion, capsicum, tomato, mushroom, mozzarella</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Park Avenue</div><div class="mDesc">Olives, bell pepper, garlic, jalapeño, mozzarella</div></div><div class="mPrice">₹329</div></li>
+        <li><div><div class="mName">Peri Peri Paneer</div></div><div class="mPrice">₹319</div></li>
+        <li><div><div class="mName">Spring Street</div><div class="mDesc">Sweet corn, capsicum, mushroom, jalapeño, mozzarella</div></div><div class="mPrice">₹349</div></li>
+        <li><div><div class="mName">Peri Peri Chicken</div></div><div class="mPrice">₹369</div></li>
+        <li><div><div class="mName">BBQ Chicken</div></div><div class="mPrice">₹369</div></li>
+        <li><div><div class="mName">Delhi-6</div><div class="mDesc">Spicy chicken tikka, red chilly, mozzarella</div></div><div class="mPrice">₹379</div></li>
+        <li><div><div class="mName">Butter Chicken Pizza</div><div class="mDesc">Must try — butter chicken, red chilly, mozzarella</div></div><div class="mPrice">₹389</div></li>
+      </ul>
+      <div class="mCat">Pastas</div>
+      <ul class="mList">
+        <li><div><div class="mName">Alfredo</div><div class="mDesc">Rich velvety Alfredo cream sauce</div></div><div class="mPrice">₹259 | 289</div></li>
+        <li><div><div class="mName">Arrabbiata</div><div class="mDesc">Spicy tangy tomato with garlic and chili</div></div><div class="mPrice">₹259 | 289</div></li>
+        <li><div><div class="mName">Aglio e Olio</div><div class="mDesc">Garlic, olive oil, chili flakes</div></div><div class="mPrice">₹289 | 329</div></li>
+        <li><div><div class="mName">Pesto Pasta</div></div><div class="mPrice">₹289 | 329</div></li>
+        <li><div><div class="mName">Creamy Gochujang Pasta</div></div><div class="mPrice">₹299 | 329</div></li>
+        <li><div><div class="mName">Primavera Pasta</div><div class="mDesc">Fresh seasonal vegetables, herbs, parmesan</div></div><div class="mPrice">₹299 | 329</div></li>
+      </ul>
+    </div>
+
+    <div class="mSec" id="tab-rb">
+      <div class="mCat">Asian Rice & Noodles</div>
+      <ul class="mList">
+        <li><div><div class="mName">Schezwan Fried Rice</div></div><div class="mPrice">Veg ₹229 · NV ₹249</div></li>
+        <li><div><div class="mName">Asian Style Fried Rice</div></div><div class="mPrice">Veg ₹249 · NV ₹289</div></li>
+        <li><div><div class="mName">Schezwan Noodles</div></div><div class="mPrice">Veg ₹219 · NV ₹249</div></li>
+        <li><div><div class="mName">Asian Style Noodles</div></div><div class="mPrice">Veg ₹259 · NV ₹299</div></li>
+        <li><div><div class="mName">Hakka Noodles</div></div><div class="mPrice">Veg ₹199 · NV ₹249</div></li>
+      </ul>
+      <div class="mCat">Biryani</div>
+      <ul class="mList">
+        <li><div><div class="mName">Veg Dum Biryani</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Veg Hyderabadi Biryani</div></div><div class="mPrice">₹329</div></li>
+        <li><div><div class="mName">Murgh Tikka Biryani</div></div><div class="mPrice">₹389</div></li>
+        <li><div><div class="mName">Murgh Dum Biryani</div></div><div class="mPrice">₹319</div></li>
+        <li><div><div class="mName">Murgh Hyderabadi Biryani</div></div><div class="mPrice">₹369</div></li>
+      </ul>
+      <div class="mCat">Rice</div>
+      <ul class="mList">
+        <li><div><div class="mName">Steam Rice H/F</div></div><div class="mPrice">₹89 | 129</div></li>
+        <li><div><div class="mName">Jeera Rice H/F</div></div><div class="mPrice">₹99 | 149</div></li>
+        <li><div><div class="mName">Dal Khichdi</div></div><div class="mPrice">₹249</div></li>
+        <li><div><div class="mName">Palak Khichdi</div></div><div class="mPrice">₹239</div></li>
+        <li><div><div class="mName">Kashmiri Pulav</div></div><div class="mPrice">₹279</div></li>
+      </ul>
+    </div>
+
+    <div class="mSec" id="tab-br">
+      <div class="mCat">Breads</div>
+      <ul class="mList">
+        <li><div><div class="mName">Roti</div></div><div class="mPrice">₹25</div></li>
+        <li><div><div class="mName">Butter Roti</div></div><div class="mPrice">₹35</div></li>
+        <li><div><div class="mName">Naan</div></div><div class="mPrice">₹49</div></li>
+        <li><div><div class="mName">Butter Naan</div></div><div class="mPrice">₹69</div></li>
+        <li><div><div class="mName">Butter Garlic Naan</div></div><div class="mPrice">₹79</div></li>
+        <li><div><div class="mName">Cheese Naan</div></div><div class="mPrice">₹79</div></li>
+        <li><div><div class="mName">Cheese Garlic Butter Naan</div></div><div class="mPrice">₹99</div></li>
+        <li><div><div class="mName">Kulcha / Butter Kulcha</div></div><div class="mPrice">₹59 | 69</div></li>
+        <li><div><div class="mName">Lachha Paratha</div></div><div class="mPrice">₹59</div></li>
+        <li><div><div class="mName">Missi Roti</div></div><div class="mPrice">₹59</div></li>
+      </ul>
+      <div class="mCat">Soups</div>
+      <ul class="mList">
+        <li><div><div class="mName">Lemon Coriander Soup</div></div><div class="mPrice">Veg ₹169 · NV ₹189</div></li>
+        <li><div><div class="mName">Manchow Soup</div></div><div class="mPrice">Veg ₹169 · NV ₹189</div></li>
+        <li><div><div class="mName">Malaysian Laksa</div></div><div class="mPrice">Veg ₹179 · NV ₹199</div></li>
+        <li><div><div class="mName">Cream of Tomato Soup</div></div><div class="mPrice">₹179</div></li>
+        <li><div><div class="mName">Cream of Broccoli Soup</div></div><div class="mPrice">₹199</div></li>
+      </ul>
+    </div>
+
+    <div class="mSec" id="tab-qb">
+      <div class="mCat">Quick Bites</div>
+      <ul class="mList">
+        <li><div><div class="mName">Cheese Chilli Toast</div></div><div class="mPrice">₹189</div></li>
+        <li><div><div class="mName">Cheese Corn Ball</div></div><div class="mPrice">₹249</div></li>
+        <li><div><div class="mName">Garlic Bread</div></div><div class="mPrice">₹159</div></li>
+        <li><div><div class="mName">Potato Wedges</div></div><div class="mPrice">₹219</div></li>
+        <li><div><div class="mName">Onion Rings</div></div><div class="mPrice">₹189</div></li>
+        <li><div><div class="mName">French Fries</div></div><div class="mPrice">₹149</div></li>
+        <li><div><div class="mName">Peri-Peri French Fries</div></div><div class="mPrice">₹169</div></li>
+        <li><div><div class="mName">Mexican Nachos</div></div><div class="mPrice">₹249</div></li>
+        <li><div><div class="mName">Chicken Nachos with Salsa</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Hummus Pita Platter</div><div class="mDesc">Falafel, three types of hummus, pita bread, olive salsa</div></div><div class="mPrice">₹289</div></li>
+        <li><div><div class="mName">Roasted Papad</div></div><div class="mPrice">₹49</div></li>
+        <li><div><div class="mName">Masala Papad</div></div><div class="mPrice">₹69</div></li>
+      </ul>
+    </div>
+
+    <div class="mSec" id="tab-dr">
+      <div class="mCat">Hot Beverages</div>
+      <ul class="mList">
+        <li><div><div class="mName">Tea</div></div><div class="mPrice">₹40</div></li>
+        <li><div><div class="mName">Coffee</div></div><div class="mPrice">₹50</div></li>
+        <li><div><div class="mName">Green Tea</div></div><div class="mPrice">₹50</div></li>
+        <li><div><div class="mName">Hot Chocolate</div></div><div class="mPrice">₹99</div></li>
+      </ul>
+      <div class="mCat">Cold & Mocktails</div>
+      <ul class="mList">
+        <li><div><div class="mName">Cold Coffee</div></div><div class="mPrice">₹169</div></li>
+        <li><div><div class="mName">Ice Tea / Peach Ice Tea</div></div><div class="mPrice">₹129 | 149</div></li>
+        <li><div><div class="mName">Mint Mojito</div></div><div class="mPrice">₹149</div></li>
+        <li><div><div class="mName">Orange Mojito</div></div><div class="mPrice">₹149</div></li>
+        <li><div><div class="mName">Pacific Blue</div><div class="mDesc">Blue curacao, lichi crush, lime juice, soda</div></div><div class="mPrice">₹149</div></li>
+        <li><div><div class="mName">Pinacolada</div></div><div class="mPrice">₹189</div></li>
+        <li><div><div class="mName">Wet Kiss</div></div><div class="mPrice">₹189</div></li>
+        <li><div><div class="mName">Magical Ming</div><div class="mDesc">Guava & pineapple, salt & chilly powder, chilly-rimmed glass</div></div><div class="mPrice">₹199</div></li>
+        <li><div><div class="mName">Summer Care</div></div><div class="mPrice">₹149</div></li>
+        <li><div><div class="mName">Peach Mishma</div></div><div class="mPrice">₹149</div></li>
+        <li><div><div class="mName">Roasted Apple</div></div><div class="mPrice">₹169</div></li>
+        <li><div><div class="mName">Passion Fruit</div></div><div class="mPrice">₹159</div></li>
+      </ul>
+      <div class="mCat">Milkshakes</div>
+      <ul class="mList">
+        <li><div><div class="mName">Mango Milkshake</div></div><div class="mPrice">₹219</div></li>
+        <li><div><div class="mName">Strawberry Milkshake</div></div><div class="mPrice">₹219</div></li>
+        <li><div><div class="mName">Blue Berry Milkshake</div></div><div class="mPrice">₹239</div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ HIGHLIGHTS ═══ -->
+<section id="highlights">
+  <div class="hl-top">
+    <div>
+      <p class="section-eyebrow r" style="color:var(--muted)">Why UGK</p>
+      <h2 class="hl-hed r d1">The experience<br><span class="it">speaks for itself.</span></h2>
+    </div>
+    <p class="hl-sub r d2">A rooftop destination where every detail — the ambience, the food, the service — is designed to make you want to return.</p>
+  </div>
+  <div class="hl-grid">
+    <div class="hl-card r" data-num="01"><div class="hl-num">01</div><div class="hl-icon">🌇</div><div class="hl-title">Rooftop Views</div><div class="hl-desc">Dine above Satara on a beautifully curated rooftop terrace atop Hotel Gulbahar.</div></div>
+    <div class="hl-card r d1" data-num="02"><div class="hl-num">02</div><div class="hl-icon">🔥</div><div class="hl-title">Live Tandoor</div><div class="hl-desc">Watch chefs craft smoky, charred kebabs straight from the clay tandoor — fire and flavour.</div></div>
+    <div class="hl-card r d2" data-num="03"><div class="hl-num">03</div><div class="hl-icon">🌍</div><div class="hl-title">Global Flavours</div><div class="hl-desc">Indian curries, Asian fusion, wood-fired pizza, and craft mocktails — all under one roof.</div></div>
+    <div class="hl-card r d3" data-num="04"><div class="hl-num">04</div><div class="hl-icon">🎂</div><div class="hl-title">Private Events</div><div class="hl-desc">Birthdays, anniversaries, group dinners — we make every celebration unforgettable.</div></div>
+    <div class="hl-card r d4" data-num="05"><div class="hl-num">05</div><div class="hl-icon">✦</div><div class="hl-title">Boho Ambience</div><div class="hl-desc">Aesthetically curated interiors where every corner is a backdrop worth remembering.</div></div>
+    <div class="hl-card r d5" data-num="06"><div class="hl-num">06</div><div class="hl-icon">🚗</div><div class="hl-title">Easy Access</div><div class="hl-desc">Free parking, delivery, takeaway, and no-contact delivery options available.</div></div>
+  </div>
+</section>
+
+
+<!-- ═══ QUOTE ═══ -->
+<div class="quote-sec">
+  <div class="q-rule"></div>
+  <p class="q-text r">"Every corner feels aesthetic — the food was fresh, flavorful, and beautifully presented. <strong>The best rooftop in Satara.</strong>"</p>
+  <cite class="q-cite r d1">— Google Reviews · 4.3 Stars · 36 Reviews</cite>
+</div>
+
+
+<!-- ═══ REVIEWS ═══ -->
+<section id="reviews">
+  <div class="rev-top">
+    <div class="score-row">
+      <div class="score-big">4.3</div>
+      <div class="score-det">
+        <div class="stars">★★★★☆</div>
+        <div class="cnt">36 Reviews on Google Maps</div>
+      </div>
+    </div>
+    <div class="rev-tag">"Best rooftop restaurant in Satara"</div>
+  </div>
+  <div class="rev-grid">
+    <div class="rCard r"><div class="rStars">★★★★★</div><p class="rText">"Ambience feels best among all places in Satara. Service is good and fast enough."</p><div class="rName">Shekhar Gumaste</div><div class="rDate">Local Guide · a month ago</div></div>
+    <div class="rCard r d1"><div class="rStars">★★★★★</div><p class="rText">"Absolutely loved the boho vibe. Every corner feels aesthetic. Food was fresh, flavorful, and beautifully presented."</p><div class="rName">eera mahajani</div><div class="rDate">2 months ago</div></div>
+    <div class="rCard r d2"><div class="rStars">★★★★★</div><p class="rText">"Wonderful dinner experience. Prompt service and very polite staff."</p><div class="rName">Bhagyashri Kumbhar</div><div class="rDate">2 weeks ago</div></div>
+    <div class="rCard r d3"><div class="rStars">★★★★★</div><p class="rText">"Beautiful atmosphere, food quality superb. Butter Chicken Bao was so delicious. Perfect for birthday parties."</p><div class="rName">Swapnil Sawant</div><div class="rDate">a month ago</div></div>
+    <div class="rCard r d4"><div class="rStars">★★★★★</div><p class="rText">"Cheesecake and tiramisu — must try! Amazing evening with great food and service."</p><div class="rName">Siddhant Doshi</div><div class="rDate">3 months ago</div></div>
+    <div class="rCard r d5"><div class="rStars">★★★★★</div><p class="rText">"Amazing food, perfect service. The mango Frappe is divine. Both veg and non-veg are a must try."</p><div class="rName">Varadraj Dhane</div><div class="rDate">a week ago</div></div>
+  </div>
+</section>
+
+
+<!-- ═══ VISIT ═══ -->
+<section id="visit">
+  <div class="visit-photo"></div>
+  <div class="visit-info">
+    <p class="section-eyebrow r">Come Visit</p>
+    <h2 class="visit-h2 r d1">Find us<br>above<br><span class="it">Powai Naka.</span></h2>
+    <div class="vRow r d2"><div class="vLbl">Address</div><div class="vVal">3rd Floor, Hotel Gulbahar<br>Powai Naka, Satara — 415001<br>Maharashtra, India</div></div>
+    <div class="vRow r d3"><div class="vLbl">Phone</div><div class="vVal"><a href="tel:+919987047072">+91 99870 47072</a></div></div>
+    <div class="vRow r d4"><div class="vLbl">Hours</div><div class="vVal">Open daily from 12:30 PM<br>Late night dining available</div></div>
+    <div class="vRow r d5"><div class="vLbl">Instagram</div><div class="vVal"><a href="https://www.instagram.com/the_ugk_satara/" target="_blank">@the_ugk_satara</a></div></div>
+    <div class="vRow r"><div class="vLbl">Maps</div><div class="vVal"><a href="https://www.google.com/maps/place/The+UGK+SATARA/@17.6868166,74.0064897" target="_blank">Open in Google Maps →</a></div></div>
+    <div class="visit-btns r d1">
+      <a href="tel:+919987047072" class="btn-white-solid">📞 Call to Reserve</a>
+      <a href="https://www.instagram.com/the_ugk_satara/" target="_blank" class="btn-outline-w">Instagram</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-logo">The <em>UGK</em></div>
+      <p class="ft-desc">The Urban Grill Kitchen — Satara's finest rooftop dining. Real food. Real ambience. Real Satara.</p>
+      <div class="ft-socials">
+        <a href="https://www.instagram.com/the_ugk_satara/" target="_blank" class="ft-soc">Instagram</a>
+        <a href="https://www.google.com/maps/place/The+UGK+SATARA" target="_blank" class="ft-soc">Maps</a>
+        <a href="tel:+919987047072" class="ft-soc">Call Us</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#highlights">Experience</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919987047072">+91 99870 47072</a></li>
+        <li><a href="https://www.instagram.com/the_ugk_satara/" target="_blank">@the_ugk_satara</a></li>
+        <li><a href="https://www.google.com/maps/place/The+UGK+SATARA" target="_blank">Google Maps</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2025 The Urban Grill Kitchen, Satara. All rights reserved.</span>
+    <span>Powai Naka · Satara 415001 · Maharashtra</span>
+  </div>
+</footer>
+
+
+<script>
+// Menu tabs
+function showTab(id, btn) {
+  document.querySelectorAll('.mSec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('tab-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+// Header shadow
+const hdr = document.querySelector('header');
+window.addEventListener('scroll', () => {
+  hdr.style.boxShadow = scrollY > 4 ? '0 2px 16px rgba(0,0,0,0.08)' : 'none';
+});
+</script>
+</body>
+</html>
